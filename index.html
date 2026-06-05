@@ -51,9 +51,33 @@ a{color:#00ff95;text-decoration:none}
 .games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
 .game-item{background:#0f172a;padding:12px 15px;border-radius:12px;border-right:4px solid #00ff95}
 
+
+canvas#bgParticles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+#splashScreen{
+position:fixed;inset:0;background:#050814;
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+z-index:999999;animation:fadeSplash 1s ease 2s forwards;
+}
+#splashScreen img{
+width:220px;height:220px;border-radius:50%;
+box-shadow:0 0 25px #00ff95,0 0 60px #00c3ff,0 0 100px #00ff95;
+animation:logoZoom 1.8s ease-in-out infinite alternate;
+}
+#splashScreen h1{margin-top:20px;color:#fff;text-shadow:0 0 20px #00ff95}
+#splashScreen p{color:#00ff95;font-size:20px;font-weight:bold}
+@keyframes logoZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes fadeSplash{to{opacity:0;visibility:hidden}}
+
 </style>
 </head>
 <body>
+<canvas id="bgParticles"></canvas>
+<div id="splashScreen">
+<img src="https://uploadkon.ir/uploads/6c8405_26file-00000000a42c7246911f5fc15ff21696.jpg" alt="CYRAX Logo">
+<h1>CYRAX GAME CLUB</h1>
+<p>🚀 فراتر از یک گیم کلاب معمولی</p>
+</div>
+
 
 
 <div class="floating-menu">
@@ -247,6 +271,41 @@ function toggleMenu(){
 let menu=document.getElementById('menuItems');
 menu.style.display=(menu.style.display==='flex')?'none':'flex';
 }
+
+const canvas=document.getElementById('bgParticles');
+const ctx=canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+const particles=[];
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.6,dy:(Math.random()-0.5)*0.6});
+}
+function animateParticles(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+for(const p of particles){
+p.x+=p.dx;p.y+=p.dy;
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle='rgba(0,255,149,.8)';ctx.fill();
+}
+for(let i=0;i<particles.length;i++){
+for(let j=i+1;j<particles.length;j++){
+let dx=particles[i].x-particles[j].x;
+let dy=particles[i].y-particles[j].y;
+let d=Math.sqrt(dx*dx+dy*dy);
+if(d<130){
+ctx.beginPath();
+ctx.moveTo(particles[i].x,particles[i].y);
+ctx.lineTo(particles[j].x,particles[j].y);
+ctx.strokeStyle='rgba(0,195,255,'+(1-d/130)*0.2+')';
+ctx.stroke();
+}}}
+requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
 </script>
 </body>
 </html>
