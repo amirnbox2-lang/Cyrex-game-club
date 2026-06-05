@@ -45,6 +45,12 @@ a{color:#00ff95;text-decoration:none}
 .insta{background:#E1306C}
 .sms{background:#00c3ff;color:#000}
 
+
+.games-toggle{width:100%;background:#111827;border:1px solid #00ff95;color:#fff;padding:18px 20px;border-radius:15px;font-size:20px;font-weight:bold;cursor:pointer;margin-bottom:15px;text-align:right}
+.games-content{display:none;background:#111827;border:1px solid #00ff95;border-radius:20px;padding:20px;margin-bottom:20px}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.game-item{background:#0f172a;padding:12px 15px;border-radius:12px;border-right:4px solid #00ff95}
+
 </style>
 </head>
 <body>
@@ -94,6 +100,62 @@ a{color:#00ff95;text-decoration:none}
 <img id="popupImg">
 <button class="close" onclick="closeImg()">بستن</button>
 </div>
+
+
+<section class="section"><div class="container">
+<h2>🎮 بازی‌های موجود</h2>
+
+<button class="games-toggle" onclick="toggleGames('psgames')">🎮 بازی‌های PS & PS5</button>
+<div id="psgames" class="games-content">
+<div class="games-grid">
+<div class="game-item">⚽ FIFA 24</div>
+<div class="game-item">⚽ PES 2021</div>
+<div class="game-item">⚽ PES 2024 / PES 25</div>
+<div class="game-item">🥋 Mortal Kombat 11</div>
+<div class="game-item">❤️ It Takes Two</div>
+<div class="game-item">🏎️ Crash Team Racing</div>
+<div class="game-item">🚔 GTA V</div>
+<div class="game-item">🏁 Need For Speed Unbound</div>
+<div class="game-item">⚔️ Ghost of Tsushima</div>
+<div class="game-item">📖 Split Fiction</div>
+<div class="game-item">🔫 Call of Duty</div>
+<div class="game-item">🏀 NBA 2K25</div>
+<div class="game-item">🕷️ Spider‑Man</div>
+<div class="game-item">🥊 Tekken 8</div>
+<div class="game-item">🗡️ Assassin's Creed</div>
+<div class="game-item">🚇 Metro</div>
+<div class="game-item">👁️ Little Nightmares</div>
+<div class="game-item">🥊 UFC 4</div>
+<div class="game-item">⛏️ Minecraft</div>
+<div class="game-item">☕ Cuphead</div>
+<div class="game-item">🚔 A Way Out</div>
+<div class="game-item">🦇 Batman</div>
+</div></div>
+
+<button class="games-toggle" onclick="toggleGames('pcgames')">🖥️ بازی‌های PC</button>
+<div id="pcgames" class="games-content">
+<div class="games-grid">
+<div class="game-item">🎯 Counter Strike 2</div>
+<div class="game-item">🔫 Call of Duty Warzone</div>
+<div class="game-item">🚔 GTA V</div>
+<div class="game-item">💣 Battlefield 3</div>
+<div class="game-item">🤠 Red Dead Redemption</div>
+<div class="game-item">🛡️ Rainbow Six Siege</div>
+<div class="game-item">📱 Watch Dogs</div>
+<div class="game-item">🏁 Need For Speed 14</div>
+<div class="game-item">🧟 Dying Light</div>
+<div class="game-item">🌑 Deadlight Director's Cut</div>
+<div class="game-item">⚔️ Metal Gear Rising Revengeance</div>
+<div class="game-item">❄️ Frozen Throne</div>
+<div class="game-item">🚗 Blur</div>
+<div class="game-item">🎙️ TeamSpeak 3</div>
+<div class="game-item">👑 Elden Ring</div>
+<div class="game-item">🏹 Rise</div>
+<div class="game-item">🎖️ Generals</div>
+<div class="game-item">🎮 Steam</div>
+</div></div>
+</div></section>
+
 
 <section class="section"><div class="container">
 <h2>📍 اطلاعات تماس</h2>
@@ -174,6 +236,12 @@ let msg=`🎮 رزرو جدید:\nسرویس: ${service}\nتاریخ: ${date}\n�
 window.open("https://wa.me/989369106238?text="+encodeURIComponent(msg));
 }
 function call(){window.location.href="tel:09173115680";}
+
+
+function toggleGames(id){
+let box=document.getElementById(id);
+box.style.display=(box.style.display==="block")?"none":"block";
+}
 
 function toggleMenu(){
 let menu=document.getElementById('menuItems');
