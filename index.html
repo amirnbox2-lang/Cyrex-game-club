@@ -68,6 +68,111 @@ animation:logoZoom 1.8s ease-in-out infinite alternate;
 @keyframes logoZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
 @keyframes fadeSplash{to{opacity:0;visibility:hidden}}
 
+
+.services-toggle{
+width:100%;
+background:linear-gradient(90deg,#00c3ff,#00ff95,#ffe600);
+border:none;
+padding:18px;
+border-radius:18px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:25px;
+color:#000;
+box-shadow:0 0 20px rgba(0,255,149,.4);
+}
+.services-content{
+display:none;
+animation:fadeUp .5s ease;
+}
+.service-card{
+background:#111827;
+border:1px solid #00ff95;
+border-radius:18px;
+padding:20px;
+margin-bottom:15px;
+box-shadow:0 0 15px rgba(0,255,149,.15);
+}
+.service-card h3{
+color:#00ff95;
+margin-bottom:8px;
+}
+.close-services{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#ff004c;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+.offer-toggle{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(90deg,#ffd700,#ff9800,#ff5722);
+color:#000;
+margin-top:20px;
+box-shadow:0 0 25px rgba(255,193,7,.5);
+}
+
+.offer-content{
+display:none;
+margin-top:15px;
+padding:25px;
+border-radius:20px;
+background:linear-gradient(135deg,#111827,#1f2937);
+border:2px solid #ffd700;
+box-shadow:0 0 30px rgba(255,215,0,.35);
+text-align:center;
+animation:fadeOffer .4s ease;
+}
+
+.offer-badge{
+font-size:36px;
+font-weight:bold;
+color:#00ff95;
+text-shadow:0 0 15px #00ff95;
+margin-bottom:15px;
+}
+
+.offer-items{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:10px;
+margin:20px 0;
+}
+
+.offer-items div{
+padding:12px;
+background:#0f172a;
+border:1px solid #00ff95;
+border-radius:12px;
+}
+
+.offer-text{
+font-size:18px;
+color:#ffd700;
+font-weight:bold;
+}
+
+@keyframes fadeOffer{
+from{
+opacity:0;
+transform:translateY(-15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
 </style>
 </head>
 <body>
@@ -111,6 +216,67 @@ animation:logoZoom 1.8s ease-in-out infinite alternate;
 </div>
 </div></section>
 
+
+<section class="section">
+<div class="container">
+<button class="services-toggle" onclick="toggleServices()">🎮 خدمات کلاب</button>
+
+<div id="servicesSection" class="services-content">
+<div class="service-card">
+<h3>🎂 برگزاری تولد</h3>
+<p>برگزاری جشن تولد در فضای حرفه‌ای و گیمینگ کلاب.</p>
+</div>
+
+<div class="service-card">
+<h3>⚽ پخش فوتبال</h3>
+<p>تماشای مسابقات مهم فوتبال روی نمایشگر بزرگ.</p>
+</div>
+
+<div class="service-card">
+<h3>🎬 پخش فیلم با کیفیت بالا</h3>
+<p>نمایش فیلم با کیفیت بالا و تجربه‌ای جذاب در کلاب.</p>
+</div>
+
+<button class="close-services" onclick="toggleServices()">✖ بستن خدمات</button>
+</div>
+</div>
+</section>
+<button class="offer-toggle" onclick="toggleOffer()">
+🔥 OFFER ویژه CYRAX
+</button>
+
+<div id="offerSection" class="offer-content">
+
+<div class="offer-badge">
+30٪ تخفیف ویژه
+</div>
+
+<h2>⏰ ساعات طلایی کلاب</h2>
+
+<p>
+هر روز هفته از ساعت <b>۹ صبح تا ۴ بعدازظهر</b>
+</p>
+
+<p>
+روی تمامی خدمات مجموعه شامل:
+</p>
+
+<div class="offer-items">
+<div>🎂 برگزاری تولد</div>
+<div>⚽ پخش فوتبال</div>
+<div>🎬 پخش فیلم با کیفیت بالا</div>
+<div>🎮 تمامی خدمات گیمینگ</div>
+</div>
+
+<p class="offer-text">
+✨ بهترین زمان برای استفاده از خدمات کلاب با قیمت کمتر ✨
+</p>
+
+<button class="close-btn" onclick="toggleOffer()">
+بستن Offer
+</button>
+
+</div>
 <section class="section"><div class="container">
 <h2>📸 گالری عکس مجموعه</h2>
 <button class="gallery-button" onclick="toggleGallery()">مشاهده گالری عکس مجموعه</button>
@@ -323,6 +489,24 @@ function enterCyrax(){
  setTimeout(()=>{splash.style.display='none';},1000);
 }
 
+</script>
+
+<script>
+function toggleServices(){
+const box=document.getElementById('servicesSection');
+box.style.display=(box.style.display==='block')?'none':'block';
+}
+</script>
+<script>
+function toggleOffer(){
+const offer=document.getElementById('offerSection');
+
+if(offer.style.display==="block"){
+offer.style.display="none";
+}else{
+offer.style.display="block";
+}
+}
 </script>
 </body>
 </html>
